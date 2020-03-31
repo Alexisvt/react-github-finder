@@ -2,11 +2,13 @@ import './App.css';
 
 import React, { Component } from 'react';
 
+import NavBar from './components/layout/NavBar';
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h2>Hello world</h2>
+      <div>
+        <NavBar title="Github Finder" />
       </div>
     );
   }
