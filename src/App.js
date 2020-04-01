@@ -30,7 +30,7 @@ class App extends Component {
       <div className="App">
         <NavBar title="Github Finder" />
         <div className="container">
-          <Users users={this.state.users} />
+          <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </div>
     );

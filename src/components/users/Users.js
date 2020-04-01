@@ -3,7 +3,7 @@ import React from 'react';
 
 import UserItem from './UserItem';
 
-const Users = ({ users }) => {
+const Users = ({ users, loading }) => {
   const userComponents = users.map((user, index) => <UserItem key={index} user={user} />);
 
   return <div style={userStyle}>{userComponents}</div>;
@@ -11,6 +11,7 @@ const Users = ({ users }) => {
 
 Users.propTypes = {
   users: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const userStyle = {
