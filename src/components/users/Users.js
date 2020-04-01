@@ -1,12 +1,23 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Fragment } from 'react';
 
+import Spinner from '../layout/Spinner';
 import UserItem from './UserItem';
 
 const Users = ({ users, loading }) => {
-  const userComponents = users.map((user, index) => <UserItem key={index} user={user} />);
-
-  return <div style={userStyle}>{userComponents}</div>;
+  return (
+    <Fragment>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div style={userStyle}>
+          {users.map((user, index) => (
+            <UserItem key={index} user={user} />
+          ))}
+        </div>
+      )}
+    </Fragment>
+  );
 };
 
 Users.propTypes = {
