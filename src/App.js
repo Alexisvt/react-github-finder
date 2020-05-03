@@ -11,11 +11,10 @@ class App extends Component {
   state = {
     loading: false,
     users: [],
+    user: {},
   };
 
-  onSearchUser = async searchTerm => {
-    console.log(searchTerm);
-
+  onSearchUser = async (searchTerm) => {
     this.setState((state, props) => ({
       loading: true,
     }));
@@ -30,12 +29,37 @@ class App extends Component {
     }));
   };
 
+  getUser = async (userName) => {
+    this.setState((state, props) => ({
+      loading: true,
+    }));
+
+    const { data } = await axios.get(
+      `https://api.github.com/users/${userName}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    this.setState((state, props) => ({
+      loading: false,
+      user: data,
+    }));
+  };
+
+  onClearUsers = () => {
+    this.setState(() => ({
+      users: [],
+    }));
+  };
+
   render() {
     return (
       <div className="App">
         <NavBar title="Github Finder" />
         <div className="container">
-          <Search searchUsers={this.onSearchUser} />
+          <Search
+            clearUsers={this.onClearUsers}
+            searchUsers={this.onSearchUser}
+            showClear={this.state.users.length ? true : false}
+          />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </div>

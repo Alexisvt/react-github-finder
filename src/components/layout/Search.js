@@ -4,19 +4,21 @@ import React, { Component } from 'react';
 class Search extends Component {
   static propTypes = {
     searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired,
   };
 
   state = {
     searchTerm: '',
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     this.props.searchUsers(this.state.searchTerm);
     this.setState({ searchTerm: '' });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -40,6 +42,11 @@ class Search extends Component {
             onClick={this.onSubmit}
           />
         </form>
+        {this.props.showClear && (
+          <button onClick={this.props.clearUsers} className="btn-light btn-block">
+            Clear
+          </button>
+        )}
       </div>
     );
   }
