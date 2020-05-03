@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import React, { Component } from 'react';
 
+import Alert from './components/layout/Alert';
 import NavBar from './components/layout/NavBar';
 import Search from './components/layout/Search';
 import Users from './components/users/Users';
@@ -12,6 +13,7 @@ class App extends Component {
     loading: false,
     users: [],
     user: {},
+    alert: null,
   };
 
   onSearchUser = async (searchTerm) => {
@@ -50,15 +52,26 @@ class App extends Component {
     }));
   };
 
+  onSetAlerts = (msg, type) => {
+    this.setState(() => ({
+      alert: {
+        msg,
+        type,
+      },
+    }));
+  };
+
   render() {
     return (
       <div className="App">
         <NavBar title="Github Finder" />
         <div className="container">
+          <Alert alert={this.state.alert} />
           <Search
             clearUsers={this.onClearUsers}
             searchUsers={this.onSearchUser}
             showClear={this.state.users.length ? true : false}
+            setAlerts={this.onSetAlerts}
           />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>

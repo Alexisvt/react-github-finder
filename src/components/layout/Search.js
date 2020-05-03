@@ -6,6 +6,7 @@ class Search extends Component {
     searchUsers: PropTypes.func.isRequired,
     clearUsers: PropTypes.func.isRequired,
     showClear: PropTypes.bool.isRequired,
+    setAlerts: PropTypes.func.isRequired,
   };
 
   state = {
@@ -14,6 +15,13 @@ class Search extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+
+    if (!this.state.searchTerm) {
+      this.props.setAlerts('Please enter something', 'light');
+      return;
+    }
+
+    this.props.setAlerts('', '');
     this.props.searchUsers(this.state.searchTerm);
     this.setState({ searchTerm: '' });
   };
