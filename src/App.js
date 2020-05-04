@@ -8,6 +8,7 @@ import Alert from './components/layout/Alert';
 import NavBar from './components/layout/NavBar';
 import Search from './components/layout/Search';
 import About from './components/pages/About';
+import User from './components/users/User';
 import Users from './components/users/Users';
 
 class App extends Component {
@@ -39,7 +40,7 @@ class App extends Component {
     }));
 
     const { data } = await axios.get(
-      `https://api.github.com/users/${userName}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      `https://api.github.com/users/${userName}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
 
     this.setState((state, props) => ({
@@ -87,6 +88,18 @@ class App extends Component {
                 )}
               />
               <Route path="/about-us" component={About} />
+              <Route
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    user={this.state.user}
+                    loading={this.state.loading}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </div>
