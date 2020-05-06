@@ -3,16 +3,20 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import Spinner from '../layout/Spinner';
+import Repos from '../repos/Repos';
 
 export default class User extends Component {
   static propTypes = {
     getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
     user: PropTypes.object,
+    repos: PropTypes.array,
     loading: PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepos(this.props.match.params.login);
   }
 
   render() {
@@ -45,8 +49,8 @@ export default class User extends Component {
         {hireable ? (
           <i className="fas fa-check text-success" />
         ) : (
-          <i className="fas fa-check text-danger" />
-        )}
+            <i className="fas fa-check text-danger" />
+          )}
         <div className="card grid-2">
           <div className="all-center">
             <img src={avatar_url} alt="" style={{ width: '150px' }} />
@@ -94,6 +98,7 @@ export default class User extends Component {
           <div className="badge badge-light">Public repos: {public_repos}</div>
           <div className="badge badge-dark">Public Gists: {public_gists}</div>
         </div>
+        <Repos repos={this.props.repos} />
       </Fragment>
     );
   }
