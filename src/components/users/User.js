@@ -1,16 +1,15 @@
-import React, { Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import Spinner from '../layout/Spinner';
-import Repos from '../repos/Repos';
+import Spinner from "../layout/Spinner";
+import Repos from "../repos/Repos";
 
 const User = ({ getUser, getUserRepos, user, match, loading, repos }) => {
-
   useEffect(() => {
     getUser(match.params.login);
     getUserRepos(match.params.login);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   const {
     name,
@@ -36,16 +35,16 @@ const User = ({ getUser, getUserRepos, user, match, loading, repos }) => {
     <Fragment>
       <Link to="/" className="btn btn-light">
         Back to search
-        </Link>
-        Hireable:{' '}
+      </Link>
+      Hireable:{" "}
       {hireable ? (
         <i className="fas fa-check text-success" />
       ) : (
-          <i className="fas fa-check text-danger" />
-        )}
+        <i className="fas fa-check text-danger" />
+      )}
       <div className="card grid-2">
         <div className="all-center">
-          <img src={avatar_url} alt="" style={{ width: '150px' }} />
+          <img src={avatar_url} alt="" style={{ width: "150px" }} />
           <h1>{name}</h1>
           <p>Location: {location}</p>
         </div>
@@ -58,7 +57,7 @@ const User = ({ getUser, getUserRepos, user, match, loading, repos }) => {
           )}
           <a href={html_url} className="btn btn-dark my-1">
             Visit GitHub Profile
-            </a>
+          </a>
           <ul>
             <li>
               {login && (
@@ -93,7 +92,6 @@ const User = ({ getUser, getUserRepos, user, match, loading, repos }) => {
       <Repos repos={repos} />
     </Fragment>
   );
-
-}
+};
 
 export default User;

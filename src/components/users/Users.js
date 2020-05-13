@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from "react";
 
-import Spinner from '../layout/Spinner';
-import UserItem from './UserItem';
+import GitHubContext from "../../context/github/github.context";
+import Spinner from "../layout/Spinner";
+import UserItem from "./UserItem";
 
-const Users = ({ users, loading }) => {
+const Users = () => {
+  const { users, loading } = useContext(GitHubContext);
+
   return (
     <Fragment>
       {loading ? (
@@ -20,15 +22,10 @@ const Users = ({ users, loading }) => {
   );
 };
 
-Users.propTypes = {
-  users: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
-};
-
 const userStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gridGap: '1rem',
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gridGap: "1rem",
 };
 
 export default Users;

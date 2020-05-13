@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-import spinner from './spinner.gif';
+import spinner from "./spinner.gif";
 
 const Spinner = () => (
   <Fragment>
@@ -9,9 +9,9 @@ const Spinner = () => (
 );
 
 const spinnerStyles = {
-  width: '200px',
-  margin: 'auto',
-  display: 'block',
+  width: "200px",
+  margin: "auto",
+  display: "block",
 };
 
 export default Spinner;
