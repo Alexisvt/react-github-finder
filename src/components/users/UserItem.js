@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const UserItem = ({ user }) => {
   const { avatar_url, login } = user;
@@ -11,7 +11,7 @@ export const UserItem = ({ user }) => {
         src={avatar_url}
         alt={login}
         className="round-img"
-        style={{ width: "60px" }}
+        style={{ width: '60px' }}
       />
       <h3>{login}</h3>
       <div>

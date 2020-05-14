@@ -1,7 +1,13 @@
 import axios from 'axios';
 import React, { useReducer } from 'react';
 
-import { CLEAR_USERS, GET_REPOS, GET_USER, SEARCH_USERS, SET_LOADING } from '../types';
+import {
+  CLEAR_USERS,
+  GET_REPOS,
+  GET_USER,
+  SEARCH_USERS,
+  SET_LOADING,
+} from '../types';
 import GitHubContext from './github.context';
 import GitHubReducer from './github.reducer';
 
@@ -54,8 +60,8 @@ const GitHubState = (props) => {
     // @ts-ignore
     dispatch({
       type: GET_USER,
-      payload: data
-    })
+      payload: data,
+    });
   };
 
   // get user repos
@@ -69,8 +75,8 @@ const GitHubState = (props) => {
     // @ts-ignore
     dispatch({
       type: GET_REPOS,
-      payload: data
-    })
+      payload: data,
+    });
   };
 
   return (

@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const NavBar = ({ icon, title }) => {
   return (
@@ -24,7 +24,7 @@ export const NavBar = ({ icon, title }) => {
 export default NavBar;
 
 NavBar.defaultProps = {
-  icon: "fab fa-github",
+  icon: 'fab fa-github',
 };
 
 NavBar.propTypes = {

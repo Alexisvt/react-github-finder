@@ -6,8 +6,9 @@ import Spinner from '../layout/Spinner';
 import Repos from '../repos/Repos';
 
 const User = ({ match }) => {
-
-  const { getUser, user, loading, getUserRepos, repos } = useContext(GitHubContext);
+  const { getUser, user, loading, getUserRepos, repos } = useContext(
+    GitHubContext
+  );
 
   useEffect(() => {
     getUser(match.params.login);
@@ -40,15 +41,15 @@ const User = ({ match }) => {
       <Link to="/" className="btn btn-light">
         Back to search
       </Link>
-      Hireable:{" "}
+      Hireable:{' '}
       {hireable ? (
         <i className="fas fa-check text-success" />
       ) : (
-          <i className="fas fa-check text-danger" />
-        )}
+        <i className="fas fa-check text-danger" />
+      )}
       <div className="card grid-2">
         <div className="all-center">
-          <img src={avatar_url} alt="" style={{ width: "150px" }} />
+          <img src={avatar_url} alt="" style={{ width: '150px' }} />
           <h1>{name}</h1>
           <p>Location: {location}</p>
         </div>
