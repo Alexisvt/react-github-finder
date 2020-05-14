@@ -1,6 +1,5 @@
 import './App.css';
 
-import axios from 'axios';
 import React, { Fragment, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -13,20 +12,7 @@ import Users from './components/users/Users';
 import GitHubState from './context/github/github.state';
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
-  const [repos, setRepos] = useState([]);
-
-  const getUserRepos = async (userName) => {
-    setLoading(true);
-
-    const { data } = await axios.get(
-      `https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
-
-    setLoading(false);
-    setRepos(data);
-  };
 
   const onSetAlerts = (msg, type) => {
     setAlert({
@@ -60,8 +46,6 @@ const App = () => {
                 render={(props) => (
                   <User
                     {...props}
-                    getUserRepos={getUserRepos}
-                    repos={repos}
                   />
                 )}
               />
