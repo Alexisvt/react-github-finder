@@ -12,15 +12,6 @@ import Users from './components/users/Users';
 import GitHubState from './context/github/github.state';
 
 const App = () => {
-  const [alert, setAlert] = useState(null);
-
-  const onSetAlerts = (msg, type) => {
-    setAlert({
-      msg,
-      type,
-    });
-  };
-
   return (
     <GitHubState>
       <Router>
@@ -33,18 +24,14 @@ const App = () => {
                 path="/"
                 render={() => (
                   <Fragment>
-                    <Alert alert={alert} />
-                    <Search setAlerts={onSetAlerts} />
+                    <Alert />
+                    <Search />
                     <Users />
                   </Fragment>
                 )}
               />
               <Route path="/about-us" component={About} />
-              <Route
-                exact
-                path="/user/:login"
-                component={User}
-              />
+              <Route exact path="/user/:login" component={User} />
             </Switch>
           </div>
         </div>
