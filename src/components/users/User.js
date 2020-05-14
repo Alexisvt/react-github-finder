@@ -1,10 +1,14 @@
-import React, { Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import Spinner from "../layout/Spinner";
-import Repos from "../repos/Repos";
+import GitHubContext from '../../context/github/github.context';
+import Spinner from '../layout/Spinner';
+import Repos from '../repos/Repos';
 
-const User = ({ getUser, getUserRepos, user, match, loading, repos }) => {
+const User = ({ getUserRepos, match, repos }) => {
+
+  const { getUser, user, loading } = useContext(GitHubContext);
+
   useEffect(() => {
     getUser(match.params.login);
     getUserRepos(match.params.login);
@@ -40,8 +44,8 @@ const User = ({ getUser, getUserRepos, user, match, loading, repos }) => {
       {hireable ? (
         <i className="fas fa-check text-success" />
       ) : (
-        <i className="fas fa-check text-danger" />
-      )}
+          <i className="fas fa-check text-danger" />
+        )}
       <div className="card grid-2">
         <div className="all-center">
           <img src={avatar_url} alt="" style={{ width: "150px" }} />

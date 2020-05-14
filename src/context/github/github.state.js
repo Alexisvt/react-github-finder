@@ -1,9 +1,9 @@
-import axios from "axios";
-import React, { useReducer } from "react";
+import axios from 'axios';
+import React, { useReducer } from 'react';
 
-import { CLEAR_USERS, SEARCH_USERS, SET_LOADING } from "../types";
-import GitHubContext from "./github.context";
-import GitHubReducer from "./github.reducer";
+import { CLEAR_USERS, GET_USER, SEARCH_USERS, SET_LOADING } from '../types';
+import GitHubContext from './github.context';
+import GitHubReducer from './github.reducer';
 
 const GitHubState = (props) => {
   const initialState = {
@@ -43,6 +43,21 @@ const GitHubState = (props) => {
   // @ts-ignore
   const setLoading = () => dispatch({ type: SET_LOADING });
 
+  // get user
+  const getUser = async (userName) => {
+    setLoading();
+
+    const { data } = await axios.get(
+      `https://api.github.com/users/${userName}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    // @ts-ignore
+    dispatch({
+      type: GET_USER,
+      payload: data
+    })
+  };
+
   return (
     <GitHubContext.Provider
       value={{
@@ -52,6 +67,7 @@ const GitHubState = (props) => {
         loading: state.loading,
         searchUsers,
         clearUsers,
+        getUser,
       }}
     >
       {props.children}
