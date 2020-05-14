@@ -43,11 +43,7 @@ const App = () => {
               <Route
                 exact
                 path="/user/:login"
-                render={(props) => (
-                  <User
-                    {...props}
-                  />
-                )}
+                component={User}
               />
             </Switch>
           </div>
