@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 
 import AlertContext from './alert.context';
 import AlertReducer from './alert.reducer';
-import { SET_ALERT } from '../types';
+import { SET_ALERT, REMOVE_ALERT } from '../types';
 
 const AlertState = (props) => {
   const initialState = null;
@@ -20,6 +20,13 @@ const AlertState = (props) => {
         type,
       },
     });
+
+    setTimeout(() => {
+      // @ts-ignore
+      dispatch({
+        type: REMOVE_ALERT,
+      });
+    }, 5000);
   };
 
   return (
